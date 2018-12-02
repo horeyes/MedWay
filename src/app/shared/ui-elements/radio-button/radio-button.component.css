@@ -1,0 +1,10 @@
+.view {
+    animation-name: example;
+    animation-duration: .05;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+@keyframes example {
+    from { transform: scale(0)}
+    to { transform: scale(1) }
+}

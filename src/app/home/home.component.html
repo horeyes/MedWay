@@ -1,0 +1,112 @@
+<ActionBar class="action-bar">
+    <!-- 
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!-- 
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Home"></Label>
+</ActionBar>
+
+<GridLayout class="page page-content" columns="*, *" rows="auto, 3*, *,">
+
+
+    <StackLayout row="0" class="place-holder" colSpan="2" rowSpan="3">
+        <Image stretch="aspectFill" src="~/assets/images/pr.jpg"></Image>
+
+    </StackLayout>
+
+    <GridLayout height="10%" colSpan="2" marginTop="36dp">
+        <Label text="MedWay Tours" textWrap="true" verticalAlignment="bottom" horizontalAlignment="center" color="white"
+            fontSize="48dp" marginLeft="16dp"></Label>
+
+    </GridLayout>
+
+    <CardView row="1" class="form-view" rowSpan="2" colSpan="2" verticalAlignment="middle" horizontalAlignment="center"
+        borderRadius="5dp">
+        <GridLayout id="forms-outer-container" rows="auto, auto, *" columns="*, *">
+            <StackLayout id="form-header" colSpan="2">
+                <Label id="form-header-label" text="Enter Tour Details" textWrap="true" verticalAlignment="middle"></Label>
+            </StackLayout>
+
+            <GridLayout id="forms" row="1" rows="auto, auto, auto, auto" columns="auto, *" colSpan="2">
+
+                <GridLayout id="form-first-field" rows="auto, auto" columns="auto, *">
+                    <Label class="fas form-title-icon" text="{{'fa-bus' | fonticon}}" textWrap="true" verticalAlignment="middle"></Label>
+                    <Label class="form-input-title" col="1" text="Driver's ID*" textWrap="true" verticalAlignment="middle"></Label>
+
+                    <TextField class="form-input-field" row="1" colSpan="2" hint="TD-1234" text=""></TextField>
+                </GridLayout>
+
+                <GridLayout class="form-field" row="1" rows="auto, auto" columns="auto, *">
+                    <Label class="fas form-title-icon" text="{{'fa-chalkboard-teacher' | fonticon}}" textWrap="true"
+                        verticalAlignment="middle"></Label>
+                    <Label class="form-input-title" col="1" text="Tour Guider ID*" textWrap="true" verticalAlignment="middle"></Label>
+
+                    <TextField class="form-input-field" row="1" colSpan="2" hint="TG-1234" text=""></TextField>
+
+                </GridLayout>
+
+                <GridLayout class="form-field" row="2" rows="auto, auto" columns="auto, auto">
+                    <GridLayout columns="auto, auto">
+                        <Label class="fas form-title-icon" text="{{'fa-male' | fonticon}}" textWrap="true"
+                            verticalAlignment="middle"></Label>
+                        <Label class="form-input-title" col="1" text="Travelers*" textWrap="true"></Label>
+
+                    </GridLayout>
+                    <TextField class="form-input-field grid-form-field" row="1" hint="1" text="" horizontalAlignment="left"></TextField>
+
+                    <GridLayout col="1" columns="auto, auto">
+                        <Label class="fas form-title-icon" text="{{'fa-clock' | fonticon}}" textWrap="true"
+                            verticalAlignment="middle"></Label>
+                        <Label class="form-input-title" col="1" text="Scheduled Time*" textWrap="true"></Label>
+                    </GridLayout>
+                    <TextField class="form-input-field grid-form-field" row="1" col="1" hint="9:00 AM" text=""
+                        horizontalAlignment="left"></TextField>
+
+                </GridLayout>
+
+                <GridLayout col="1" rows="auto, *" rowSpan="4" columns="auto, *">
+                    <Label id="cruise-line-list" text="Choose Cruise Line Tour" textWrap="true" horizontalAlignment="left"></Label>
+
+                    <ListView id="list-view" row="1" [items]="dataItems" height="300dp" colSpan="2">
+                        <ng-template let-item="item" let-i="index">
+                            <GridLayout (tap)="selectCruiseLine(i)">
+                                <GridLayout id="list-view-data" horizontalAlignment="left" columns="auto, *">
+                                    <RadioButton col="0" [checked]="item.checked" verticalAlignment="top"
+                                        horizontalAlignment="left" color="#2C2F90" borderColor="#2C2F90"></RadioButton>
+                                    <Image col="1" [src]="item.img" height="75%"></Image>
+                                    <!-- <Label col="1" text="tessfadsfdsfssdfsdt" fontSize="34" textWrap="true"></Label> -->
+
+
+                                </GridLayout>
+                            </GridLayout>
+                        </ng-template>
+
+                        <!-- <ListViewGridLayout tkListViewLayout scrollDirection="Vertical" ios:itemHeight="200" spanCount="2"></ListViewGridLayout> -->
+                    </ListView>
+                </GridLayout>
+            </GridLayout>
+
+            <Label id="disclaimer" row="2" text="Note*: You must complete all forms in order to start the tour. "
+                textWrap="true"></Label>
+
+
+            <Label id="clear-field-label" row="3" text="CLEAR ALL FIELDS" textWrap="true" verticalAlignment="bottom"></Label>
+            <GridLayout id="start-button" row="2" col="1" horizontalAlignment="right" verticalAlignment="bottom">
+                <Label id="start-button-label" text="Start Tour Now" textWrap="true" horizontalAlignment="center"
+                    verticalAlignment="middle"></Label>
+
+            </GridLayout>
+
+        </GridLayout>
+    </CardView>
+
+
+</GridLayout>
