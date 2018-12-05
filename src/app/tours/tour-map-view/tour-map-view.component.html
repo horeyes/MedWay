@@ -1,0 +1,13 @@
+<GridLayout>
+    <MapView #mapView [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [minZoom]="minZoom" [maxZoom]="maxZoom"
+        [bearing]="bearing" [tilt]="tilt" i-padding="50,50,50,50" [padding]="padding" (mapReady)="onMapReady($event)"
+        mapAnimationsEnabled="true" (markerSelect)="onMarkerEvent($event)" (markerBeginDragging)="onMarkerEvent($event)"
+        (markerEndDragging)="onMarkerEvent($event)" (markerDrag)="onMarkerEvent($event)" (markerInfoWindowTapped)="onMarkerEvent($event)"
+        (coordinateTapped)="onCoordinateTapped($event)" (cameraChanged)="onCameraChanged($event)" (cameraMove)="onCameraMove($event)"></MapView>
+
+    <GridLayout height="72dp" width="72dp" backgroundColor="#2C2F90" borderRadius="100%" verticalAlignment="bottom"
+        margin="16dp" horizontalAlignment="right" elevation="10" (tap)="finishTour()">
+        <Label class="fas" text="{{'fa-stop' | fonticon }}" textWrap="true" verticalAlignment="middle" color="white"
+            horizontalAlignment="center"></Label>
+    </GridLayout>
+</GridLayout>

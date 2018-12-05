@@ -18,7 +18,14 @@
 
 
     <StackLayout row="0" class="place-holder" colSpan="2" rowSpan="3">
-        <Image stretch="aspectFill" src="~/assets/images/pr.jpg"></Image>
+        <Carousel android:autoPagingInterval="1">
+            <CarouselItem>
+                <Image stretch="aspectFill" src="~/assets/images/pr.jpg"></Image>
+            </CarouselItem>
+            <CarouselItem>
+                <Image stretch="aspectFill" src="~/assets/images/sj.jpg"></Image>
+            </CarouselItem>
+        </Carousel>
 
     </StackLayout>
 
@@ -29,7 +36,7 @@
     </GridLayout>
 
     <CardView row="1" class="form-view" rowSpan="2" colSpan="2" verticalAlignment="middle" horizontalAlignment="center"
-        borderRadius="5dp">
+        borderRadius="5dp" opacity=".9">
         <GridLayout id="forms-outer-container" rows="auto, auto, *" columns="*, *">
             <StackLayout id="form-header" colSpan="2">
                 <Label id="form-header-label" text="Enter Tour Details" textWrap="true" verticalAlignment="middle"></Label>
@@ -60,15 +67,21 @@
                         <Label class="form-input-title" col="1" text="Travelers*" textWrap="true"></Label>
 
                     </GridLayout>
-                    <TextField class="form-input-field grid-form-field" row="1" hint="1" text="" horizontalAlignment="left"></TextField>
+
+                    <TextView class="form-input-field grid-form-field" row="1" [(ngModel)]="travelersCount" editable="false"
+                        horizontalAlignment="left" (tap)="travelersOnTour()"></TextView>
+
 
                     <GridLayout col="1" columns="auto, auto">
                         <Label class="fas form-title-icon" text="{{'fa-clock' | fonticon}}" textWrap="true"
                             verticalAlignment="middle"></Label>
                         <Label class="form-input-title" col="1" text="Scheduled Time*" textWrap="true"></Label>
                     </GridLayout>
-                    <TextField class="form-input-field grid-form-field" row="1" col="1" hint="9:00 AM" text=""
-                        horizontalAlignment="left"></TextField>
+                    <!-- <TextField class="form-input-field grid-form-field" row="1" col="1" hint="9:00 AM" text=""></TextField> -->
+
+                    <TextView class="form-input-field grid-form-field" row="1" col="1" [text]="time | date:'shortTime'"
+                        editable="false" horizontalAlignment="left" (tap)="selectTime()"></TextView>
+
 
                 </GridLayout>
 
@@ -99,7 +112,7 @@
 
 
             <Label id="clear-field-label" row="3" text="CLEAR ALL FIELDS" textWrap="true" verticalAlignment="bottom"></Label>
-            <GridLayout id="start-button" row="2" col="1" horizontalAlignment="right" verticalAlignment="bottom">
+            <GridLayout id="start-button" row="2" col="1" horizontalAlignment="right" verticalAlignment="bottom" (tap)="navigate()">
                 <Label id="start-button-label" text="Start Tour Now" textWrap="true" horizontalAlignment="center"
                     verticalAlignment="middle"></Label>
 
@@ -109,4 +122,32 @@
     </CardView>
 
 
+</GridLayout>
+
+<GridLayout>
+    <StackLayout [style.zIndex]="999" modal size="md" alignment="middle" [dismissable]="false" [duration]="100" (open)="onOpenModal()"
+        (close)="onCloseModal()">
+        <GridLayout borderRadius="3" rows="*, auto" class="p-t-15 bg-white">
+
+            <GridLayout rows="auto,  *" columns="auto, auto, auto" horizontalAlignment="center" verticalAlignment="middle">
+                <Label id="modal-title" text="Attendance" textWrap="true" colSpan="3" horizontalAlignment="center"></Label>
+
+
+                <GridLayout row="1" verticalAlignment="middle" horizontalAlignment="right" (tap)="decrement()">
+                    <Label class="fas modal-form-label" text="{{'fa-minus' | fonticon}}" textWrap="true"></Label>
+                </GridLayout>
+                <TextField id="traveler-modal-field" row="1" col="1" keyboardType="number" returnKeyType="done"
+                    verticalAlignment="middle" horizontalAlignment="center" [(ngModel)]="_travelersCount"></TextField>
+                <GridLayout row="1" col="2" verticalAlignment="middle" (tap)="increment()">
+                    <Label class="fas modal-form-label" text="{{'fa-plus' | fonticon}}" textWrap="true"></Label>
+                </GridLayout>
+
+            </GridLayout>
+
+            <GridLayout class="m-y-2 m-r-15 pull-right" row="1" columns="auto, auto">
+                <Label class="m-y-10 p-10" col="0" (tap)="closeModal()" text="CANCEL"></Label>
+                <Label class="m-y-10 p-10" col="1" (tap)="acceptCount()" text="Ok"></Label>
+            </GridLayout>
+        </GridLayout>
+    </StackLayout>
 </GridLayout>

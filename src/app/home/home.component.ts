@@ -1,7 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { RouterExtensions } from "nativescript-angular";
+import { ModalDatetimepicker } from "nativescript-modal-datetimepicker";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
 import { Page } from "tns-core-modules/ui/page/page";
+import { ModalComponent } from "./modal";
 
 @Component({
     selector: "Home",
@@ -11,9 +14,15 @@ import { Page } from "tns-core-modules/ui/page/page";
 })
 export class HomeComponent implements OnInit {
 
+    time: Date = new Date(new Date().getFullYear(), new Date().getMonth(),
+        new Date().getDate(), new Date().getHours(), 0);
+    travelersCount: number = 1;
+    picker: ModalDatetimepicker = new ModalDatetimepicker();
+    @ViewChild(ModalComponent) modal: ModalComponent;
+    private _travelersCount: number = 1;
     private _mockArray: Array<any> = [];
     private _selectedCruiseLineIndex: number = 0;
-    constructor(private _page: Page) {
+    constructor(private _page: Page, private _routerExtensions: RouterExtensions) {
         // Use the component constructor to inject providers.
         this._page.actionBarHidden = true;
 
@@ -67,5 +76,47 @@ export class HomeComponent implements OnInit {
         this._mockArray[this._selectedCruiseLineIndex].checked = false;
         this._selectedCruiseLineIndex = i;
         this._mockArray[this._selectedCruiseLineIndex].checked = true;
+    }
+
+    travelersOnTour() {
+        console.log("Traverlers Method");
+        this.modal.show();
+    }
+
+    closeModal() {
+        this.modal.hide();
+        this._travelersCount = this.travelersCount;
+    }
+
+    onOpenModal() {
+        console.log("opened modal");
+    }
+
+    onCloseModal() {
+        console.log("closed modal");
+    }
+
+    decrement() {
+        return this._travelersCount = --this._travelersCount;
+    }
+
+    increment() {
+        return this._travelersCount = ++this._travelersCount;
+    }
+
+    acceptCount() {
+        this.travelersCount = this._travelersCount;
+        this.modal.hide();
+    }
+
+    selectTime() {
+        this.picker.pickTime().then((result) => {
+            this.time = new Date(new Date().getFullYear(), new Date().getMonth(),
+                new Date().getDate(), result.hour, result.minute);
+        });
+    }
+
+    navigate() {
+        this._routerExtensions.navigate(["/tours"]);
     }
 }

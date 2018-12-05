@@ -1,0 +1,51 @@
+<GridLayout id="parent-grid-layout" rows="auto, auto, *" shadow="5" elevation="10">
+    <GridLayout height="35%">
+        <Carousel showIndicator="false">
+            <CarouselItem>
+                <Image src="~/assets/images/pr.jpg" stretch="aspectFill"></Image>
+            </CarouselItem>
+            <CarouselItem>
+                <Image src="~/assets/images/sj.jpg" stretch="aspectFill"></Image>
+            </CarouselItem>
+        </Carousel>
+    </GridLayout>
+
+    <GridLayout id="details-grid-layout" row="1" rows="auto, auto">
+        <Label id="tour-detail-title" text="Points Of Interest" textWrap="true"></Label>
+
+        <ScrollView row="1" orientation="horizontal">
+            <StackLayout orientation="horizontal">
+                <StackLayout *ngFor="let pointOfInterest of locationPoints; let i = index; let last = last;" (tap)="selectPOI(i)">
+
+                    <GridLayout columns="auto, auto">
+                        <GridLayout id="point-interest-grid" verticalAlignment="middle">
+                            <Label id="point-of-interest" [backgroundColor]="pointOfInterestIndex === i ? '#2C2F90' : 'red'" [ngClass]="{'scalePoint': pointOfInterestIndex === i}" [text]="pointOfInterest"
+                                textWrap="true"></Label>
+                        </GridLayout>
+                        <StackLayout *ngIf="!last" col="1" backgroundColor="red" height="4dp" width="16dp"
+                            verticalAlignment="middle">
+
+                        </StackLayout>
+                    </GridLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+
+    <ScrollView row="2">
+        <GridLayout id="details-grid-layout" rows="auto, auto">
+            <Label id="tour-detail-title" text="Old San Juan" textWrap="true"></Label>
+            <Label row="1" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At consectetur lorem donec massa sapien. Sagittis aliquam malesuada bibendum arcu vitae elementum curabitur vitae. Tempus iaculis urna id volutpat lacus. Nulla aliquet enim tortor at auctor. Arcu bibendum at varius vel pharetra vel. Nec dui nunc mattis enim ut. Nec feugiat in fermentum posuere urna nec tincidunt praesent semper. Auctor urna nunc id cursus metus aliquam eleifend mi in. Condimentum mattis pellentesque id nibh tortor id aliquet. Etiam sit amet nisl purus in mollis nunc sed id. Pharetra diam sit amet nisl suscipit adipiscing bibendum est ultricies. At in tellus integer feugiat scelerisque varius morbi. Non enim praesent elementum facilisis leo vel fringilla est. Dignissim enim sit amet venenatis urna.
+
+            Ornare arcu dui vivamus arcu felis bibendum ut tristique et. Nulla malesuada pellentesque elit eget. Neque egestas congue quisque egestas diam in arcu. Praesent semper feugiat nibh sed pulvinar proin. Habitant morbi tristique senectus et netus et malesuada. Nisi scelerisque eu ultrices vitae auctor eu augue ut. Imperdiet proin fermentum leo vel orci porta non pulvinar neque. Sit amet cursus sit amet dictum sit. Turpis egestas maecenas pharetra convallis posuere. Diam volutpat commodo sed egestas egestas fringilla phasellus. Integer quis auctor elit sed vulputate mi. Viverra ipsum nunc aliquet bibendum enim facilisis gravida neque. Interdum velit laoreet id donec ultrices. Non diam phasellus vestibulum lorem. Vestibulum sed arcu non odio euismod lacinia at quis. Felis imperdiet proin fermentum leo vel orci porta non. Molestie nunc non blandit massa enim. Fames ac turpis egestas integer eget.
+            
+            Ipsum dolor sit amet consectetur adipiscing. Pulvinar pellentesque habitant morbi tristique senectus et netus et malesuada. Nec sagittis aliquam malesuada bibendum arcu. Facilisis gravida neque convallis a cras semper auctor. Diam ut venenatis tellus in. Id ornare arcu odio ut sem nulla. Cras fermentum odio eu feugiat pretium nibh. Blandit libero volutpat sed cras ornare arcu dui. Malesuada bibendum arcu vitae elementum curabitur vitae nunc sed velit. Sem fringilla ut morbi tincidunt augue interdum. Enim praesent elementum facilisis leo vel. Ut morbi tincidunt augue interdum velit euismod. Amet massa vitae tortor condimentum lacinia quis vel. Eget nulla facilisi etiam dignissim diam quis. Tellus in metus vulputate eu scelerisque felis imperdiet proin fermentum. Quam pellentesque nec nam aliquam sem et tortor. Tempor orci eu lobortis elementum nibh tellus. Tortor pretium viverra suspendisse potenti nullam ac. Arcu cursus euismod quis viverra nibh cras pulvinar.
+            
+            Augue neque gravida in fermentum et sollicitudin ac. Urna duis convallis convallis tellus id interdum velit. At consectetur lorem donec massa sapien faucibus et molestie ac. Non odio euismod lacinia at quis risus. Laoreet suspendisse interdum consectetur libero id faucibus nisl tincidunt. Eu feugiat pretium nibh ipsum consequat nisl vel pretium. Sed tempus urna et pharetra pharetra. Duis at consectetur lorem donec massa sapien faucibus et molestie. Aliquet lectus proin nibh nisl condimentum. Augue interdum velit euismod in pellentesque massa placerat duis. Sed cras ornare arcu dui vivamus arcu felis bibendum. Gravida dictum fusce ut placerat orci nulla pellentesque dignissim enim. Venenatis a condimentum vitae sapien pellentesque habitant morbi. Egestas fringilla phasellus faucibus scelerisque. Eget sit amet tellus cras adipiscing enim eu turpis. Dictum non consectetur a erat nam at lectus.
+            
+            Platea dictumst quisque sagittis purus. In metus vulputate eu scelerisque felis imperdiet proin fermentum leo. In fermentum et sollicitudin ac orci phasellus egestas tellus. Massa placerat duis ultricies lacus. Nulla facilisi cras fermentum odio eu feugiat pretium nibh. Nulla aliquet porttitor lacus luctus. Ipsum consequat nisl vel pretium lectus quam. Et netus et malesuada fames ac turpis. Arcu dictum varius duis at consectetur lorem. Sed arcu non odio euismod lacinia at quis risus sed. Quam vulputate dignissim suspendisse in est. Accumsan sit amet nulla facilisi morbi tempus. Sit amet nulla facilisi morbi. Lectus proin nibh nisl condimentum id. Posuere ac ut consequat semper viverra nam. Dignissim diam quis enim lobortis scelerisque fermentum. Fermentum et sollicitudin ac orci phasellus egestas."
+                textWrap="true"></Label>
+        </GridLayout>
+    </ScrollView>
+
+</GridLayout>
